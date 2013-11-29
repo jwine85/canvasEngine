@@ -1,5 +1,9 @@
-var canvas = CE.defines("game").ready(function(){
-  canvas.Scene.call("testScene");
+var canvas = CE.defines("game").
+  extend(Input).
+  extend(Animation).
+  extend(Tiled).
+  ready(function(){
+    canvas.Scene.call("testScene");
 });
 
 canvas.Scene.new({
@@ -16,7 +20,10 @@ canvas.Scene.new({
     this.element = this.createElement();
     this.element.drawImage("img_id");
     stage.append(this.element);
-  
+    
+    canvas.Input.keyDown(Input.A, function(e){
+      console.log("A is pressed");
+    });
   },
   render: function(stage){
     this.element.x +=1;
